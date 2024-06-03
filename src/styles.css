@@ -20,7 +20,9 @@
   3. Allow percentage-based heights in the application
 */
 html,
-body {
+body,
+app-root {
+  display: flex;
   height: 100%;
 }
 
@@ -30,15 +32,8 @@ body {
   5. Improve text rendering
 */
 body {
-  position: relative;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-gutter: stable;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
 }
 
 /*
@@ -80,6 +75,99 @@ h6 {
   9. Create a root stacking context
 */
 #root,
-#__next {
+#__next,
+app-root {
   isolation: isolate;
+}
+
+/* Theme */
+
+html {
+  --color-white: hsl(0 0% 100%);
+  --color-grey-50: hsl(210 20% 98%);
+  --color-grey-100: hsl(210 40% 96%);
+  --color-grey-200: hsl(214 32% 91%);
+  --color-grey-300: hsl(213 27% 84%);
+  --color-grey-400: hsl(218 11% 65%);
+  --color-grey-500: hsl(220 9% 46%);
+  --color-grey-600: hsl(215 14% 34%);
+  --color-grey-700: hsl(217 19% 27%);
+  --color-grey-800: hsl(215 28% 17%);
+  --color-grey-900: hsl(221 39% 11%);
+  --color-grey-950: hsl(224 71% 4%);
+  --color-black: hsl(0 0% 0%);
+  --color-primary-light: hsl(212 96% 78%);
+  --color-primary-normal: hsl(217 91% 60%);
+  --color-primary-dark: hsl(226 71% 40%);
+
+  --color-shadow: "0 0% 20%";
+  @media (prefers-color-scheme: dark) {
+    --color-shadow: "0 0% 0%";
+  }
+
+  --elevation-depressed:
+    inset 0.5px 1px 4px hsl(var(--color-shadow) / 0.7);
+  --elevation-small:
+    0.5px 1px 1px hsl(var(--color-shadow) / 0.7);
+  --elevation-medium:
+    1px 2px 2px hsl(var(--color-shadow) / 0.333),
+    2px 4px 4px hsl(var(--color-shadow) / 0.333),
+    3px 6px 6px hsl(var(--color-shadow) / 0.333);
+  --elevation-large:
+    1px 2px 2px hsl(var(--color-shadow) / 0.2),
+    2px 4px 4px hsl(var(--color-shadow) / 0.2),
+    4px 8px 8px hsl(var(--color-shadow) / 0.2),
+    8px 16px 16px hsl(var(--color-shadow) / 0.2),
+    16px 32px 32px hsl(var(--color-shadow) / 0.2);
+
+  --weight-thin: 100;
+  --weight-normal: 400;
+  --weight-mediumSmall: 500;
+  --weight-medium: 600;
+  --weight-bold: 800;
+
+  --breakpoint-phoneMax: 600;
+  --breakpoint-tabletMax: 950;
+  --breakpoint-laptopMax: 1300;
+}
+
+body {
+  background-color: var(--color-white);
+  font-family: "Inter";
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-grey-600) var(--color-grey-100);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--color-black);
+    scrollbar-color: var(--color-grey-400) var(--color-grey-800);
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 1000px;
+  background-color: var(--color-grey-600);
+  border: 2px solid var(--color-grey-100);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--color-grey-400);
+    border: 2px solid var(--color-grey-800);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--color-grey-100);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--color-grey-800);
+  }
+}
+
+h1 {
+  font-weight: var(--weight-medium);
+  color: var(--color-black);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-white);
+  }
 }

@@ -1,27 +1,25 @@
 # SpaceX Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
+Proposed solution for [Coding Challenge](https://github.com/knutvalen/coding-challenge-web).
 
-## Development server
+## Getting started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. Install dependencies:
 
-## Code scaffolding
+```shell
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Start the app:
 
-## Build
+```shell
+npm run dev
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## CI/CD
 
-## Running unit tests
+Github Actions at [Github](https://github.com/knutvalen/SpaceX-Angular/actions)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Project management
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Kanban board at [Github](https://github.com/users/knutvalen/projects/1)

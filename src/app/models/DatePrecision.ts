@@ -1,1 +1,7 @@
-export type DatePrecision = "quarter" | "half" | "year" | "month" | "day" | "hour";
+export type DatePrecision =
+  | 'quarter'
+  | 'half'
+  | 'year'
+  | 'month'
+  | 'day'
+  | 'hour';

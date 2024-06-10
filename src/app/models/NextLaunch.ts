@@ -1,4 +1,4 @@
-import { DatePrecision } from "./DatePrecision";
+import { DatePrecision } from './DatePrecision';
 
 export type NextLaunch = {
   dateUtc: Date;

@@ -82,7 +82,7 @@ app-root {
 
 /* Theme */
 
-html {
+:root {
   --color-white: hsl(0 0% 100%);
   --color-grey-50: hsl(210 20% 98%);
   --color-grey-100: hsl(210 40% 96%);
@@ -100,21 +100,17 @@ html {
   --color-primary-normal: hsl(217 91% 60%);
   --color-primary-dark: hsl(226 71% 40%);
 
-  --color-shadow: "0 0% 20%";
+  --color-shadow: 0 0% 20%;
   @media (prefers-color-scheme: dark) {
-    --color-shadow: "0 0% 0%";
+    --color-shadow: 0 0% 0%;
   }
 
-  --elevation-depressed:
-    inset 0.5px 1px 4px hsl(var(--color-shadow) / 0.7);
-  --elevation-small:
-    0.5px 1px 1px hsl(var(--color-shadow) / 0.7);
-  --elevation-medium:
-    1px 2px 2px hsl(var(--color-shadow) / 0.333),
+  --elevation-depressed: inset 0.5px 1px 4px hsl(var(--color-shadow) / 0.7);
+  --elevation-small: 0.5px 1px 1px hsl(var(--color-shadow) / 0.7);
+  --elevation-medium: 1px 2px 2px hsl(var(--color-shadow) / 0.333),
     2px 4px 4px hsl(var(--color-shadow) / 0.333),
     3px 6px 6px hsl(var(--color-shadow) / 0.333);
-  --elevation-large:
-    1px 2px 2px hsl(var(--color-shadow) / 0.2),
+  --elevation-large: 1px 2px 2px hsl(var(--color-shadow) / 0.2),
     2px 4px 4px hsl(var(--color-shadow) / 0.2),
     4px 8px 8px hsl(var(--color-shadow) / 0.2),
     8px 16px 16px hsl(var(--color-shadow) / 0.2),
@@ -165,6 +161,24 @@ body {
 
 h1 {
   font-weight: var(--weight-medium);
+  color: var(--color-black);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-white);
+  }
+}
+
+h2 {
+  font-weight: var(--weight-medium);
+  color: var(--color-black);
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-white);
+  }
+}
+
+p {
+  font-weight: var(--weight-normal);
   color: var(--color-black);
 
   @media (prefers-color-scheme: dark) {

@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 12px;
+  background-color: var(--color-grey-50);
+  box-shadow: var(--elevation-medium);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--color-grey-900);
+    box-shadow: none;
+  }
+}

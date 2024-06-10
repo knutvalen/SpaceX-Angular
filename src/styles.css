@@ -82,7 +82,7 @@ app-root {
 
 /* Theme */
 
-html {
+:root {
   --color-white: hsl(0 0% 100%);
   --color-grey-50: hsl(210 20% 98%);
   --color-grey-100: hsl(210 40% 96%);

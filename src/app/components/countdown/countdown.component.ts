@@ -30,17 +30,20 @@ export class CountdownComponent {
           const diffTimeInSeconds = Math.floor(
             (nextLaunchTime - nowTime) / 1000,
           );
-          this.timeLeft.set(diffTimeInSeconds);
-          this.timer = setInterval(() => {
-            this.timeLeft.update((time) => {
-              if (time > 0) {
-                return time - 1;
-              } else {
-                clearInterval(this.timer);
-                return 0;
-              }
-            });
-          }, 1000);
+
+          if (diffTimeInSeconds > 0) {
+            this.timeLeft.set(diffTimeInSeconds);
+            this.timer = setInterval(() => {
+              this.timeLeft.update((time) => {
+                if (time > 0) {
+                  return time - 1;
+                } else {
+                  clearInterval(this.timer);
+                  return 0;
+                }
+              });
+            }, 1000);
+          }
         });
       }
       onCleanup(() => clearInterval(this.timer));

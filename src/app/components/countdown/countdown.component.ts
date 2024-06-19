@@ -1,7 +1,23 @@
-import { Component, computed, effect, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  Inject,
+  Injector,
+  OnDestroy,
+  OnInit,
+  PLATFORM_ID,
+  runInInjectionContext,
+  signal,
+} from '@angular/core';
 import { NextLaunchService } from '../../services/next-launch.service';
+import { isPlatformBrowser, NgIf } from '@angular/common';
+import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
 
-const formatCountdown = (timeInSeconds: number): string => {
+const formatCountdown = (timeInSeconds?: number): string | undefined => {
+  if (!timeInSeconds) {
+    return undefined;
+  }
   const days = Math.floor(timeInSeconds / (60 * 60 * 24));
   const hours = Math.floor((timeInSeconds % (60 * 60 * 24)) / (60 * 60));
   const minutes = Math.floor((timeInSeconds % (60 * 60)) / 60);
@@ -12,44 +28,76 @@ const formatCountdown = (timeInSeconds: number): string => {
 @Component({
   selector: 'app-countdown',
   standalone: true,
-  imports: [],
+  imports: [NgIf, SlinkyRotatorComponent],
   templateUrl: './countdown.component.html',
   styleUrl: './countdown.component.css',
 })
-export class CountdownComponent {
+export class CountdownComponent implements OnInit, OnDestroy {
   private timeLeft = signal<number | undefined>(undefined);
-  private timer?: NodeJS.Timeout;
+  private intervalId: any;
+  private readonly isBrowser: boolean;
+  formattedCountdown = computed(() => formatCountdown(this.timeLeft()));
+  isLoading = signal(false);
 
-  formattedCountdown = computed(() => {
-    const timeLeft = this.timeLeft();
-    if (timeLeft) {
-      formatCountdown(timeLeft);
+  constructor(
+    private nextLaunchService: NextLaunchService,
+    @Inject(PLATFORM_ID) private platformId: any,
+    private injector: Injector,
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  startInterval(): void {
+    this.clearInterval();
+    this.intervalId = setInterval(
+      () =>
+        this.timeLeft.update((value) => {
+          if (value) {
+            return value - 1;
+          } else {
+            return 0;
+          }
+        }),
+      1000,
+    );
+  }
+
+  clearInterval(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
     }
-  });
+  }
 
-  constructor(private nextLaunchService: NextLaunchService) {
-    effect((onCleanup) => {
-      const timeLeft = this.timeLeft();
-      if (timeLeft && timeLeft <= 0) {
-        this.nextLaunchService
-          .getTimeToNextLaunch()
-          .then((diffTimeInSeconds) => {
-            if (diffTimeInSeconds > 0) {
-              this.timeLeft.set(diffTimeInSeconds);
-              this.timer = setInterval(() => {
-                this.timeLeft.update((_timeLeft) => {
-                  if (_timeLeft && _timeLeft > 0) {
-                    return _timeLeft - 1;
-                  } else {
-                    clearInterval(this.timer);
-                    return 0;
-                  }
-                });
-              }, 1000);
-            }
-          });
-      }
-      onCleanup(() => clearInterval(this.timer));
+  countdown(): void {
+    runInInjectionContext(this.injector, () => {
+      effect(() => {
+        const timeLeft = this.timeLeft();
+
+        if (timeLeft && timeLeft > 0) {
+          this.startInterval();
+        } else {
+          this.clearInterval();
+        }
+      });
     });
+  }
+
+  ngOnInit(): void {
+    this.isLoading.set(true);
+    this.nextLaunchService
+      .getTimeToNextLaunch()
+      .then((diffTimeInSeconds) => {
+        if (diffTimeInSeconds > 0) {
+          this.timeLeft.set(diffTimeInSeconds);
+          this.isBrowser && this.countdown();
+        }
+        this.isLoading.set(false);
+      })
+      .catch(() => this.isLoading.set(false));
+  }
+
+  ngOnDestroy(): void {
+    this.clearInterval();
   }
 }

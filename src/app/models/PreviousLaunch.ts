@@ -1,9 +1,7 @@
 import { DatePrecision } from './DatePrecision';
-import { Webcast } from './Webcast';
 
-export type NextLaunch = {
+export type PreviousLaunch = {
   net: Date;
   netPrecision: DatePrecision;
-  webcast?: Webcast;
   name: string;
 };

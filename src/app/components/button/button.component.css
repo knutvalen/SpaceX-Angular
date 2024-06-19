@@ -1,0 +1,26 @@
+button {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  border: none;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition:
+    box-shadow 400ms,
+    transform 400ms;
+  user-select: none;
+  cursor: pointer;
+
+  :enabled:hover {
+    box-shadow:
+      1px 2px 2px hsl(var(--color-shadow) / 0.333),
+      2px 4px 4px hsl(var(--color-shadow) / 0.333),
+      3px 6px 6px hsl(var(--color-shadow) / 0.333);
+    transform: scale(102%);
+    transition:
+      box-shadow 100ms,
+      transform 100ms;
+  }
+}

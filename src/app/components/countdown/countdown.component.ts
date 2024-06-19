@@ -1,5 +1,5 @@
 import { Component, computed, effect, signal } from '@angular/core';
-import { SpaceXApiService } from '../../api/space-xapi.service';
+import { NextLaunchService } from '../../services/next-launch.service';
 
 const formatCountdown = (timeInSeconds: number): string => {
   const days = Math.floor(timeInSeconds / (60 * 60 * 24));
@@ -17,34 +17,37 @@ const formatCountdown = (timeInSeconds: number): string => {
   styleUrl: './countdown.component.css',
 })
 export class CountdownComponent {
-  private timeLeft = signal(0);
-  private timer: any = null;
-  formattedCountdown = computed(() => formatCountdown(this.timeLeft()));
+  private timeLeft = signal<number | undefined>(undefined);
+  private timer?: NodeJS.Timeout;
 
-  constructor(private api: SpaceXApiService) {
+  formattedCountdown = computed(() => {
+    const timeLeft = this.timeLeft();
+    if (timeLeft) {
+      formatCountdown(timeLeft);
+    }
+  });
+
+  constructor(private nextLaunchService: NextLaunchService) {
     effect((onCleanup) => {
-      if (this.timeLeft() <= 0) {
-        this.api.getNextLaunch().then((nextLaunch) => {
-          const nowTime = new Date().getTime();
-          const nextLaunchTime = new Date(nextLaunch.dateUtc).getTime();
-          const diffTimeInSeconds = Math.floor(
-            (nextLaunchTime - nowTime) / 1000,
-          );
-
-          if (diffTimeInSeconds > 0) {
-            this.timeLeft.set(diffTimeInSeconds);
-            this.timer = setInterval(() => {
-              this.timeLeft.update((time) => {
-                if (time > 0) {
-                  return time - 1;
-                } else {
-                  clearInterval(this.timer);
-                  return 0;
-                }
-              });
-            }, 1000);
-          }
-        });
+      const timeLeft = this.timeLeft();
+      if (timeLeft && timeLeft <= 0) {
+        this.nextLaunchService
+          .getTimeToNextLaunch()
+          .then((diffTimeInSeconds) => {
+            if (diffTimeInSeconds > 0) {
+              this.timeLeft.set(diffTimeInSeconds);
+              this.timer = setInterval(() => {
+                this.timeLeft.update((_timeLeft) => {
+                  if (_timeLeft && _timeLeft > 0) {
+                    return _timeLeft - 1;
+                  } else {
+                    clearInterval(this.timer);
+                    return 0;
+                  }
+                });
+              }, 1000);
+            }
+          });
       }
       onCleanup(() => clearInterval(this.timer));
     });

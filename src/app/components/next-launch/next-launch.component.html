@@ -1,1 +1,22 @@
-<p>next-launch works!</p>
+<div class="wrapper">
+  <h2>Next launch</h2>
+  <div class="data">
+    <p class="dataName">Name</p>
+    <p>{{ viewModel()?.name }}</p>
+  </div>
+  <div class="data">
+    <p class="dataName">Flight number</p>
+    <p>{{ viewModel()?.flightNumber }}</p>
+  </div>
+  <div class="data">
+    <p class="dataName">Launch date</p>
+    <p>{{ viewModel()?.date }}</p>
+  </div>
+  <div class="data">
+    <p class="dataName">Webcast</p>
+    <a href="{{viewModel()?.webcast}}" target="_blank">
+      <i-feather name="external-link" class="icon"></i-feather>
+      <span>{{viewModel()?.webcast}}</span>
+    </a>
+  </div>
+</div>

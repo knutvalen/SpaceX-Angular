@@ -1,6 +1,6 @@
 import { Component, effect, signal } from '@angular/core';
 import { NextLaunchService } from '../../services/next-launch.service';
-import { IconsModule } from "../../icons/icons.module";
+import { IconsModule } from '../../icons/icons.module';
 
 type NextLaunchViewModel = {
   name: string;
@@ -12,9 +12,7 @@ type NextLaunchViewModel = {
 @Component({
   selector: 'app-next-launch',
   standalone: true,
-  imports: [
-    IconsModule,
-  ],
+  imports: [IconsModule],
   templateUrl: './next-launch.component.html',
   styleUrl: './next-launch.component.css',
 })
@@ -51,7 +49,7 @@ export class NextLaunchComponent {
             });
         }
 
-        if (nextLaunch.datePrecision === "half") {
+        if (nextLaunch.datePrecision === 'half') {
           if (month >= 0 && month <= 5) {
             date = date + 'First';
           }
@@ -67,37 +65,37 @@ export class NextLaunchComponent {
             });
         }
 
-        if (nextLaunch.datePrecision === "year") {
+        if (nextLaunch.datePrecision === 'year') {
           date = nextLaunch.dateUtc.toLocaleDateString('en', {
             year: 'numeric',
           });
         }
 
-        if (nextLaunch.datePrecision === "month") {
+        if (nextLaunch.datePrecision === 'month') {
           date = nextLaunch.dateUtc.toLocaleDateString('en', {
             year: 'numeric',
-            month: "long",
+            month: 'long',
           });
         }
 
-        if (nextLaunch.datePrecision === "day") {
+        if (nextLaunch.datePrecision === 'day') {
           date = nextLaunch.dateUtc.toLocaleDateString('en', {
             year: 'numeric',
-            month: "long",
-            day: "numeric"
+            month: 'long',
+            day: 'numeric',
           });
         }
 
-        if (nextLaunch.datePrecision === "hour") {
+        if (nextLaunch.datePrecision === 'hour') {
           date = nextLaunch.dateUtc.toLocaleDateString('en', {
             year: 'numeric',
-            month: "long",
-            day: "numeric",
-            hour: "numeric",
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
           });
         }
 
-        const webcast = new URL(nextLaunch.webcast)
+        const webcast = new URL(nextLaunch.webcast);
 
         const name = nextLaunch.name;
         const flightNumber = nextLaunch.flightNumber.toString();

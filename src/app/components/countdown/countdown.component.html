@@ -1,4 +1,9 @@
-<div class="wrapper">
-  <h2>Countdown</h2>
-  <p>{{ formattedCountdown() }}</p>
+<div class="card">
+  <h2>Countdown to next launch</h2>
+  <div *ngIf="isLoading()" class="loading">
+    <app-slinky-rotator></app-slinky-rotator>
+  </div>
+  <div *ngIf="!isLoading()">
+    <p *ngIf="formattedCountdown()">{{ formattedCountdown() }}</p>
+  </div>
 </div>

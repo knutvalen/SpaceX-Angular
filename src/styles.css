@@ -23,6 +23,7 @@ html,
 body,
 app-root {
   display: flex;
+  flex: 1;
   height: 100%;
 }
 
@@ -105,8 +106,8 @@ app-root {
     --color-shadow: 0 0% 0%;
   }
 
-  --elevation-depressed: inset 0.5px 1px 4px hsl(var(--color-shadow) / 0.7);
-  --elevation-small: 0.5px 1px 1px hsl(var(--color-shadow) / 0.7);
+  --elevation-depressed: inset 1px 1px 4px hsl(var(--color-shadow) / 0.7);
+  --elevation-small: 1px 1px 1px hsl(var(--color-shadow) / 0.7);
   --elevation-medium: 1px 2px 2px hsl(var(--color-shadow) / 0.333),
     2px 4px 4px hsl(var(--color-shadow) / 0.333),
     3px 6px 6px hsl(var(--color-shadow) / 0.333);
@@ -122,14 +123,19 @@ app-root {
   --weight-medium: 600;
   --weight-bold: 800;
 
-  --breakpoint-phoneMax: 600;
-  --breakpoint-tabletMax: 950;
-  --breakpoint-laptopMax: 1300;
+  --breakpoint-phone: 600;
+  --breakpoint-tablet: 950;
+  --breakpoint-laptop: 1300;
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  width: 100vw;
   background-color: var(--color-white);
-  font-family: "Inter";
+  font-family: "Inter", sans-serif;
   scrollbar-width: thin;
   scrollbar-color: var(--color-grey-600) var(--color-grey-100);
 
@@ -177,11 +183,42 @@ h2 {
   }
 }
 
-p {
+p,
+a {
   font-weight: var(--weight-normal);
   color: var(--color-black);
 
   @media (prefers-color-scheme: dark) {
     color: var(--color-white);
   }
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  gap: 16px;
+  border-radius: 12px;
+  --background-color: var(--color-grey-50);
+  background-color: var(--background-color);
+  box-shadow: var(--elevation-medium);
+
+  @media (prefers-color-scheme: dark) {
+    --background-color: var(--color-grey-900);
+    box-shadow: none;
+  }
+}
+
+.loading {
+  align-self: center;
+}
+
+.icon {
+  --size: 16px;
+  width: var(--size);
+  height: var(--size);
+  flex-grow: 0;
+  flex-shrink: 0;
 }

@@ -15,7 +15,7 @@ export class NextLaunchService {
   async getTimeToNextLaunch(): Promise<number> {
     const nextLaunch = await this.getNextLaunch();
     const nowTime = new Date().getTime();
-    const nextLaunchTime = new Date(nextLaunch.dateUtc).getTime();
+    const nextLaunchTime = new Date(nextLaunch.net).getTime();
     return Math.floor((nextLaunchTime - nowTime) / 1000);
   }
 }

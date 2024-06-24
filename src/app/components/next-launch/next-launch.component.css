@@ -1,4 +1,10 @@
-.data {
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.listItem {
   display: flex;
   gap: 24px;
 }
@@ -10,5 +16,21 @@
 a {
   display: flex;
   align-items: center;
-  gap: 16px;
+  text-decoration: none;
+}
+
+.icon {
+  margin-right: 16px;
+}
+
+.card {
+  flex: 1;
+}
+
+.headingWrapper {
+  display: flex;
+}
+
+h2 {
+  flex: 1;
 }

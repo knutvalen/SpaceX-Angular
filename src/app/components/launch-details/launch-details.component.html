@@ -1,0 +1,99 @@
+<div class="wrapper">
+  <div *ngIf="isLoading()" class="centerFullScreen">
+    <app-slinky-rotator />
+  </div>
+  <main *ngIf="!isLoading()">
+    <div *ngIf="viewModel()?.patch" class="patchWrapper">
+      <img src="{{ viewModel()?.patch }}" alt="mission patch" />
+    </div>
+    <h1>Launch details</h1>
+    <div class="list">
+      <div class="listItem">
+        <p class="name">Name</p>
+        <p class="value">{{ viewModel()?.name }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Status</p>
+        <p class="value">{{ viewModel()?.status }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Launch date</p>
+        <p class="value">{{ viewModel()?.date }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Webcasts</p>
+        <div class="list">
+          <div
+            *ngFor="let webcast of viewModel()?.webcasts"
+            class="webcastItem"
+          >
+            <a class="value" href="{{ webcast.url }}" target="_blank">
+              <i-feather name="external-link" class="icon" />
+              <span>
+                {{ webcast.type.name
+                }}{{ webcast.publisher ? ": " + webcast.publisher : "" }}
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="listItem">
+        <p class="name">Mission name</p>
+        <p class="value">{{ viewModel()?.mission?.name }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Mission type</p>
+        <p class="value">{{ viewModel()?.mission?.type }}</p>
+      </div>
+      <div class="listItem" *ngIf="viewModel()?.mission?.description">
+        <p class="name">Mission description</p>
+        <p class="value">{{ viewModel()?.mission?.description }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Orbit</p>
+        <p class="value">{{ viewModel()?.mission?.orbit }}</p>
+      </div>
+      <div class="listItem">
+        <p class="name">Details updated</p>
+        <p class="value">{{ viewModel()?.lastUpdated }}</p>
+      </div>
+    </div>
+    <div class="cardWrapper">
+      <div class="card">
+        <div
+          *ngIf="viewModel()?.launchServiceProvider?.logo"
+          class="logoWrapper"
+        >
+          <img
+            src="{{ viewModel()?.launchServiceProvider?.logo }}"
+            alt="logo"
+          />
+        </div>
+        <h2>Service Provider</h2>
+        <div class="list">
+          <div class="listItem">
+            <p class="name">Name</p>
+            <p class="value">{{ viewModel()?.launchServiceProvider?.name }}</p>
+          </div>
+          <div class="listItem">
+            <p class="name">Description</p>
+            <p class="value">
+              {{ viewModel()?.launchServiceProvider?.description }}
+            </p>
+          </div>
+          <div class="listItem">
+            <p class="name">Website</p>
+            <a
+              class="value"
+              href="{{ viewModel()?.launchServiceProvider?.url }}"
+              target="_blank"
+            >
+              <i-feather name="external-link" class="icon" />
+              {{ viewModel()?.launchServiceProvider?.url }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -20,10 +20,7 @@
   3. Allow percentage-based heights in the application
 */
 html,
-body,
-app-root {
-  display: flex;
-  flex: 1;
+body {
   height: 100%;
 }
 
@@ -123,7 +120,7 @@ app-root {
   --weight-medium: 600;
   --weight-bold: 800;
 
-  --breakpoint-phone: 600;
+  --breakpoint-phone: 600px;
   --breakpoint-tablet: 950;
   --breakpoint-laptop: 1300;
 }
@@ -195,24 +192,19 @@ a {
 
 .card {
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
   gap: 16px;
   border-radius: 12px;
-  --background-color: var(--color-grey-50);
-  background-color: var(--background-color);
+  --card-color: var(--color-grey-50);
+  background-color: var(--card-color);
   box-shadow: var(--elevation-medium);
 
   @media (prefers-color-scheme: dark) {
-    --background-color: var(--color-grey-900);
+    --card-color: var(--color-grey-900);
     box-shadow: none;
   }
-}
-
-.loading {
-  align-self: center;
 }
 
 .icon {
@@ -221,4 +213,25 @@ a {
   height: var(--size);
   flex-grow: 0;
   flex-shrink: 0;
+}
+
+.centerFullScreen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-self: center;
+  width: min(100%, calc(1100 / 16 * 1rem));
+  padding: 16px 32px 96px;
+
+  @media (max-width: calc(600 / 16 * 1rem)) {
+    padding: 8px 16px 48px;
+  }
 }

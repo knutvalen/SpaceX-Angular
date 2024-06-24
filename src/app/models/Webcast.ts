@@ -1,4 +1,7 @@
 export type Webcast = {
-  source: string;
+  publisher?: string;
+  type: {
+    name: string;
+  };
   url: string;
 };

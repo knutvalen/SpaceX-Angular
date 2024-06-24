@@ -1,3 +1,7 @@
 p {
   font-size: calc(56 / 16 * 1rem);
 }
+
+.card {
+  flex: 1;
+}

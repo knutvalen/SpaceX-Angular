@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LaunchService } from '../../services/launch.service';
 import {
@@ -6,7 +6,7 @@ import {
   LaunchServiceProvider,
   Mission,
 } from '../../models/LaunchDetails';
-import { NgForOf, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgForOf, NgIf } from '@angular/common';
 import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
 import { IconsModule } from '../../icons/icons.module';
 import { Webcast } from '../../models/Webcast';

@@ -2,9 +2,9 @@
   <main>
     <h1>SpaceX launches</h1>
     <div class="grid">
-      <app-countdown class="flex" />
-      <app-next-launch class="flex" />
-      <app-previous-launches class="flex two-columns" />
+      <app-countdown class="flex" *ngIf="isBrowser" />
+      <app-next-launch class="flex" *ngIf="isBrowser" />
+      <app-previous-launches class="flex two-columns" *ngIf="isBrowser" />
     </div>
   </main>
 </div>

@@ -42,17 +42,14 @@ const formatCountdown = (timeInSeconds?: number): string | undefined => {
 export class CountdownComponent implements OnInit, OnDestroy {
   private timeLeft = signal<number | undefined>(undefined);
   private intervalId: any;
-  private readonly isBrowser: boolean;
+
   formattedCountdown = computed(() => formatCountdown(this.timeLeft()));
   isLoading = signal(false);
 
   constructor(
     private nextLaunchService: NextLaunchService,
-    @Inject(PLATFORM_ID) private platformId: any,
     private injector: Injector,
-  ) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  ) {}
 
   startInterval(): void {
     this.clearInterval();
@@ -97,7 +94,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
       .then((diffTimeInSeconds) => {
         this.timeLeft.set(diffTimeInSeconds);
         if (diffTimeInSeconds > 0) {
-          this.isBrowser && this.countdown();
+          this.countdown();
         }
         this.isLoading.set(false);
       })

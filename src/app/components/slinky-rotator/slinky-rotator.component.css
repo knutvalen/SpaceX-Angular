@@ -97,13 +97,11 @@
   border-radius: 50%;
   border-style: solid;
   border-color: var(--color-black);
+  animation:
+    slinky 1s linear infinite alternate,
+    rotate 2s linear infinite;
 
   @media (prefers-color-scheme: dark) {
     border-color: var(--color-white);
   }
-
-  will-change: transform;
-  animation:
-    slinky 1000ms linear infinite alternate,
-    rotate 2000ms linear infinite;
 }

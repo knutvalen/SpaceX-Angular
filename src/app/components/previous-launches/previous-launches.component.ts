@@ -1,6 +1,6 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { HistoricLaunchesService } from '../../services/historic-launches.service';
-import { NgForOf, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgForOf, NgIf } from '@angular/common';
 import { LaunchService } from '../../services/launch.service';
 import { ButtonComponent } from '../button/button.component';
 import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';

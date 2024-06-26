@@ -5,14 +5,16 @@ import { LaunchService } from '../../services/launch.service';
 import { ButtonComponent } from '../button/button.component';
 import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
 import { IconsModule } from '../../icons/icons.module';
+import { Router } from '@angular/router';
 
 type LaunchViewModel = {
   name: string;
   date: string;
+  id: string;
 };
 
 @Component({
-  selector: 'app-historic-launches',
+  selector: 'app-previous-launches',
   standalone: true,
   imports: [
     NgForOf,
@@ -21,19 +23,20 @@ type LaunchViewModel = {
     SlinkyRotatorComponent,
     IconsModule,
   ],
-  templateUrl: './historic-launches.component.html',
-  styleUrl: './historic-launches.component.css',
+  templateUrl: './previous-launches.component.html',
+  styleUrl: './previous-launches.component.css',
 })
-export class HistoricLaunchesComponent implements OnInit {
+export class PreviousLaunchesComponent implements OnInit {
   viewModel = signal<LaunchViewModel[] | undefined>(undefined);
   isLoading = signal(false);
   private limit: number;
-  private readonly initialLimit: number = 10;
+  private readonly initialLimit = 10;
   isAscendingOrder = false;
 
   constructor(
     private historicLaunchesService: HistoricLaunchesService,
     private launchService: LaunchService,
+    private router: Router,
   ) {
     this.limit = this.initialLimit;
   }
@@ -50,7 +53,11 @@ export class HistoricLaunchesComponent implements OnInit {
       .then((launches) => {
         let viewModel = launches.map((launch) => ({
           name: launch.name,
-          date: this.launchService.getLaunchDate(launch),
+          date: this.launchService.getLaunchDate(
+            launch.netPrecision,
+            launch.net,
+          ),
+          id: launch.id,
         }));
 
         this.isAscendingOrder && viewModel.reverse();
@@ -69,5 +76,9 @@ export class HistoricLaunchesComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading.set(true);
     this.loadLaunches();
+  }
+
+  openDetails(launch: LaunchViewModel) {
+    this.router.navigate(['/launch'], { queryParams: { id: launch.id } });
   }
 }

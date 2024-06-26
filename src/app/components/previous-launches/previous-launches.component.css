@@ -11,23 +11,6 @@
   justify-content: space-between;
 }
 
-.data {
-  display: flex;
-  gap: 24px;
-}
-
-.dataName {
-  flex: 1;
-}
-
-.launch {
-  display: grid;
-  grid-template-columns: min-content 1fr min-content;
-  gap: 24px;
-  padding: 24px 0;
-  background-color: var(--background-color);
-}
-
 .list {
   display: flex;
   flex-direction: column;
@@ -37,17 +20,22 @@
   @media (prefers-color-scheme: dark) {
     background-color: var(--color-grey-700);
   }
+
+  :first-child {
+    padding-top: 0;
+  }
+
+  :last-child {
+    padding-bottom: 0;
+  }
 }
 
-.dataWrapper {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-}
-
-button {
-  width: fit-content;
-  align-self: center;
+.listItem {
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  gap: 24px;
+  padding: 24px 0;
+  background-color: var(--card-color);
 }
 
 .data-1 {
@@ -73,8 +61,9 @@ button {
 .data-5 {
   grid-row: span 2;
   grid-column: 3;
+  align-self: center;
 }
 
 .button {
-  height: fit-content;
+  align-self: center;
 }

@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="card">
+    <div class="headingWrapper">
+      <h2>Previous launches</h2>
+      <app-button (click)="toggleOrder()" variant="text" size="small">
+        <i-feather *ngIf="!isAscendingOrder" name="chevron-down" class="icon" />
+        <i-feather *ngIf="isAscendingOrder" name="chevron-up" class="icon" />
+      </app-button>
+    </div>
+    <div *ngIf="isLoading()" class="centerFullScreen">
+      <app-slinky-rotator />
+    </div>
+    <div *ngIf="!isLoading()">
+      <div class="list">
+        <div *ngFor="let launch of viewModel()" class="listItem">
+          <p class="data-1">Name</p>
+          <p class="data-2">{{ launch.name }}</p>
+          <p class="data-3">Launch&nbsp;date</p>
+          <p class="data-4">{{ launch.date }}</p>
+          <app-button
+            (click)="openDetails(launch)"
+            variant="outlined"
+            size="small"
+            class="data-5"
+          >
+            Details
+          </app-button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-button
+    (click)="loadMore()"
+    [disabled]="isLoading()"
+    class="button"
+    variant="text"
+    size="medium"
+  >
+    Load more
+  </app-button>
+</div>

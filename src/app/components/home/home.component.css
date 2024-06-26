@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  gap: 48px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: stretch;
+  margin: 0 -16px;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 0 -8px;
+  }
+}
+
+.two-columns {
+  grid-column: span 2;
+
+  @media (max-width: 950px) {
+    grid-column: 1;
+  }
+}
+
+.flex {
+  display: flex;
+}

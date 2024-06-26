@@ -1,21 +1,24 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NextLaunchService } from '../../services/next-launch.service';
 import { IconsModule } from '../../icons/icons.module';
 import { LaunchService } from '../../services/launch.service';
 import { NgIf } from '@angular/common';
 import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
+import { Webcast } from '../../models/Webcast';
+import { ButtonComponent } from '../button/button.component';
+import { Router } from '@angular/router';
 
 type NextLaunchViewModel = {
+  id: string;
   name: string;
   date: string;
-  webcastSource?: string;
-  webcastUrl?: string;
+  webcast: Webcast;
 };
 
 @Component({
   selector: 'app-next-launch',
   standalone: true,
-  imports: [IconsModule, NgIf, SlinkyRotatorComponent],
+  imports: [IconsModule, NgIf, SlinkyRotatorComponent, ButtonComponent],
   templateUrl: './next-launch.component.html',
   styleUrl: './next-launch.component.css',
 })
@@ -26,18 +29,31 @@ export class NextLaunchComponent {
   constructor(
     private nextLaunchService: NextLaunchService,
     private launchService: LaunchService,
+    private router: Router,
   ) {
     this.isLoading.set(true);
     this.nextLaunchService
       .getNextLaunch()
       .then((launch) => {
-        const date = this.launchService.getLaunchDate(launch);
-        const name = launch.name;
-        const webcastSource = launch.webcast?.source;
-        const webcastUrl = launch.webcast?.url;
-        this.viewModel.set({ date, name, webcastSource, webcastUrl });
+        const date = this.launchService.getLaunchDate(
+          launch.netPrecision,
+          launch.net,
+        );
+
+        this.viewModel.set({
+          id: launch.id,
+          date,
+          name: launch.name,
+          webcast: launch.webcast,
+        });
         this.isLoading.set(false);
       })
       .catch(() => this.isLoading.set(false));
+  }
+
+  openDetails() {
+    this.router.navigate(['/launch'], {
+      queryParams: { id: this.viewModel()?.id },
+    });
   }
 }

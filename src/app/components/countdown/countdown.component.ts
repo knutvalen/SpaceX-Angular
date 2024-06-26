@@ -13,11 +13,18 @@ import {
 import { NextLaunchService } from '../../services/next-launch.service';
 import { isPlatformBrowser, NgIf } from '@angular/common';
 import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
+import { ButtonComponent } from '../button/button.component';
 
 const formatCountdown = (timeInSeconds?: number): string | undefined => {
-  if (!timeInSeconds) {
+  console.log(timeInSeconds);
+  if (timeInSeconds === undefined) {
     return undefined;
   }
+
+  if (timeInSeconds <= 0) {
+    return '🚀 Launched';
+  }
+
   const days = Math.floor(timeInSeconds / (60 * 60 * 24));
   const hours = Math.floor((timeInSeconds % (60 * 60 * 24)) / (60 * 60));
   const minutes = Math.floor((timeInSeconds % (60 * 60)) / 60);
@@ -28,7 +35,7 @@ const formatCountdown = (timeInSeconds?: number): string | undefined => {
 @Component({
   selector: 'app-countdown',
   standalone: true,
-  imports: [NgIf, SlinkyRotatorComponent],
+  imports: [NgIf, SlinkyRotatorComponent, ButtonComponent],
   templateUrl: './countdown.component.html',
   styleUrl: './countdown.component.css',
 })
@@ -88,8 +95,8 @@ export class CountdownComponent implements OnInit, OnDestroy {
     this.nextLaunchService
       .getTimeToNextLaunch()
       .then((diffTimeInSeconds) => {
+        this.timeLeft.set(diffTimeInSeconds);
         if (diffTimeInSeconds > 0) {
-          this.timeLeft.set(diffTimeInSeconds);
           this.isBrowser && this.countdown();
         }
         this.isLoading.set(false);

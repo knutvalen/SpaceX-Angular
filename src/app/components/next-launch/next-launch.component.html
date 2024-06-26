@@ -1,25 +1,39 @@
 <div class="card">
-  <h2>Next launch</h2>
-  <div *ngIf="isLoading()" class="loading">
-    <app-slinky-rotator></app-slinky-rotator>
+  <div class="headingWrapper">
+    <h2>Next launch</h2>
+    <app-button
+      *ngIf="!isLoading() && viewModel()"
+      (click)="openDetails()"
+      variant="contained"
+      size="small"
+    >
+      Details
+    </app-button>
   </div>
-  <div *ngIf="!isLoading()">
-    <div *ngIf="viewModel()?.name" class="data">
+  <div *ngIf="isLoading()" class="centerFullScreen">
+    <app-slinky-rotator />
+  </div>
+  <div *ngIf="!isLoading() && viewModel()" class="list">
+    <div *ngIf="viewModel()?.name" class="listItem">
       <p class="dataName">Name</p>
       <p>{{ viewModel()?.name }}</p>
     </div>
-    <div *ngIf="viewModel()?.date" class="data">
+    <div *ngIf="viewModel()?.date" class="listItem">
       <p class="dataName">Launch date</p>
       <p>{{ viewModel()?.date }}</p>
     </div>
-    <div
-      *ngIf="viewModel()?.webcastUrl && viewModel()?.webcastSource"
-      class="data"
-    >
+    <div class="listItem">
       <p class="dataName">Webcast</p>
-      <a href="{{ viewModel()?.webcastUrl }}" target="_blank">
-        <i-feather name="external-link" class="icon"></i-feather>
-        <span>{{ viewModel()?.webcastSource }}</span>
+      <a href="{{ viewModel()?.webcast?.url }}" target="_blank">
+        <i-feather name="external-link" class="icon" />
+        <span
+          >{{ viewModel()?.webcast?.type?.name
+          }}{{
+            viewModel()?.webcast?.publisher
+              ? ": " + viewModel()?.webcast?.publisher
+              : ""
+          }}</span
+        >
       </a>
     </div>
   </div>

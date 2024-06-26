@@ -1,3 +1,14 @@
-<button [type]="type" [disabled]="disabled">
+<button
+  [type]="type"
+  [disabled]="disabled"
+  [ngClass]="{
+    contained: variant === 'contained',
+    outlined: variant === 'outlined',
+    text: variant === 'text',
+    small: size === 'small',
+    medium: size === 'medium',
+    large: size === 'large'
+  }"
+>
   <ng-content></ng-content>
 </button>

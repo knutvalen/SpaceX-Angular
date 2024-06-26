@@ -13,14 +13,126 @@ button {
   user-select: none;
   cursor: pointer;
 
-  :enabled:hover {
-    box-shadow:
-      1px 2px 2px hsl(var(--color-shadow) / 0.333),
-      2px 4px 4px hsl(var(--color-shadow) / 0.333),
-      3px 6px 6px hsl(var(--color-shadow) / 0.333);
-    transform: scale(102%);
-    transition:
-      box-shadow 100ms,
-      transform 100ms;
+  &:focus-visible {
+    outline-offset: 4px;
   }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:enabled:hover {
+      box-shadow: var(--elevation-medium);
+      transform: scale(102%);
+      transition:
+        box-shadow 100ms,
+        transform 100ms;
+    }
+  }
+
+  &:enabled:active {
+    box-shadow: var(--elevation-depressed);
+    transform: scale(98%);
+    transition:
+      box-shadow 50ms,
+      transform 50ms;
+  }
+
+  &:disabled {
+    color: var(--color-grey-400);
+    background: linear-gradient(
+      to bottom right,
+      var(--color-grey-100),
+      var(--color-grey-400)
+    );
+    cursor: not-allowed;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:disabled {
+      color: var(--color-grey-900);
+      background: linear-gradient(
+        to bottom right,
+        var(--color-grey-600),
+        var(--color-grey-900)
+      );
+    }
+  }
+}
+
+.contained {
+  color: var(--color-black);
+  background: linear-gradient(
+    to bottom right,
+    var(--color-primary-light),
+    var(--color-primary-normal)
+  );
+  text-decoration: none;
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-white);
+    background: linear-gradient(
+      to bottom right,
+      var(--color-primary-normal),
+      var(--color-primary-dark)
+    );
+  }
+}
+
+.outlined {
+  color: var(--color-primary-normal);
+  background-color: transparent;
+  border: 2px solid currentColor;
+
+  &:disabled {
+    color: var(--color-grey-300);
+    background: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    color: var(--color-primary-light);
+    background-color: transparent;
+
+    &:disabled {
+      color: var(--color-grey-800);
+      background: none;
+    }
+  }
+}
+
+.text {
+  color: var(--color-primary-normal);
+  background-color: transparent;
+  text-decoration: underline;
+
+  &:disabled {
+    color: var(--color-grey-300);
+    background: none;
+  }
+
+  &:focus-visible {
+    outline-color: currentColor;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:disabled {
+      color: var(--color-grey-800);
+      background: none;
+    }
+  }
+}
+
+.small {
+  font-size: calc(16 / 16 * 1rem);
+  padding: 6px 12px;
+  border-radius: 2px;
+}
+
+.medium {
+  font-size: calc(18 / 16 * 1rem);
+  padding: 14px 20px;
+  border-radius: 2px;
+}
+
+.large {
+  font-size: calc(21 / 16 * 1rem);
+  padding: 14px 20px;
+  border-radius: 2px;
 }

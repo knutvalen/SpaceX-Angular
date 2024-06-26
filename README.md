@@ -1,6 +1,6 @@
 # SpaceX Angular
 
-Proposed solution for [Coding Challenge](https://github.com/knutvalen/coding-challenge-web).
+Proposed solution for [The Frontend Developer Challenge](https://github.com/knutvalen/coding-challenge-web).
 
 ## Getting started
 
@@ -16,10 +16,10 @@ npm install
 npm run dev
 ```
 
-## CI/CD
+## Continuous Integration & Continuous Deployment
 
-Github Actions at [Github](https://github.com/knutvalen/SpaceX-Angular/actions)
+Push to the "Master" git branch, and Github Actions at [Github](https://github.com/knutvalen/SpaceX-Angular/actions) will build and deploy.
 
-## Project management
+## To-Do's
 
 Kanban board at [Github](https://github.com/users/knutvalen/projects/1)

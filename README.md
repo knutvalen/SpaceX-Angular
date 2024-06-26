@@ -18,8 +18,8 @@ npm run dev
 
 ## Continuous Integration & Continuous Deployment
 
-Push to the "Master" git branch, and Github Actions at [Github](https://github.com/knutvalen/SpaceX-Angular/actions) will build and deploy.
+[Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://space-x-angular.vercel.app.
 
 ## To-Do's
 
-Kanban board at [Github](https://github.com/users/knutvalen/projects/1)
+[Kanban](https://github.com/users/knutvalen/projects/1) board at Github.

@@ -22,7 +22,7 @@
       <p class="dataName">Launch date</p>
       <p>{{ viewModel()?.date }}</p>
     </div>
-    <div class="listItem">
+    <div *ngIf="viewModel()?.webcast" class="listItem">
       <p class="dataName">Webcast</p>
       <a href="{{ viewModel()?.webcast?.url }}" target="_blank">
         <i-feather name="external-link" class="icon" />

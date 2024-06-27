@@ -11,6 +11,7 @@
 
 .dataName {
   flex-grow: 1;
+  text-wrap: nowrap;
 }
 
 a {

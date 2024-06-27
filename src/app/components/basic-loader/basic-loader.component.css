@@ -10,6 +10,10 @@
 .basicLoader {
   --size: 96px;
 
+  @media (max-width: calc(600 / 16 * 1rem)) {
+    --size: 48px;
+  }
+
   :before {
     border-width: 2px;
   }

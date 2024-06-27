@@ -12,7 +12,7 @@ type NextLaunchViewModel = {
   id: string;
   name: string;
   date: string;
-  webcast: Webcast;
+  webcast?: Webcast;
 };
 
 @Component({

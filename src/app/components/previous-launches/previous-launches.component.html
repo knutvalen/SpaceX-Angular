@@ -13,9 +13,9 @@
     <div *ngIf="!isLoading()">
       <div class="list">
         <div *ngFor="let launch of viewModel()" class="listItem">
-          <p class="data-1">Name</p>
+          <p class="data-1 name">Name</p>
           <p class="data-2">{{ launch.name }}</p>
-          <p class="data-3">Launch&nbsp;date</p>
+          <p class="data-3 name">Launch&nbsp;date</p>
           <p class="data-4">{{ launch.date }}</p>
           <app-button
             (click)="openDetails(launch)"
@@ -31,11 +31,12 @@
   </div>
   <app-button
     (click)="loadMore()"
-    [disabled]="isLoading()"
+    [disabled]="isLoading() || isLoadingMore()"
     class="button"
     variant="text"
     size="medium"
   >
     Load more
   </app-button>
+  <app-basic-loader *ngIf="isLoadingMore()" class="loadingMore" />
 </div>

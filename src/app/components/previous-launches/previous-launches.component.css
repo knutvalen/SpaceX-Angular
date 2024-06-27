@@ -67,3 +67,11 @@
 .button {
   align-self: center;
 }
+
+.name {
+  text-wrap: nowrap;
+}
+
+.loadingMore {
+  align-self: center;
+}

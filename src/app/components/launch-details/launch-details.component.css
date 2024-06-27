@@ -65,6 +65,7 @@ main {
 .name {
   flex: 1;
   font-size: calc(16 / 16 * 1rem);
+  text-wrap: nowrap;
 }
 
 .value {

@@ -6,5 +6,5 @@ export type NextLaunch = {
   name: string;
   net: Date;
   netPrecision: DatePrecision;
-  webcast: Webcast;
+  webcast?: Webcast;
 };

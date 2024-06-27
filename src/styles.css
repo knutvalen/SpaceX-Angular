@@ -229,9 +229,9 @@ main {
   flex-direction: column;
   align-self: center;
   width: min(100%, calc(1100 / 16 * 1rem));
-  padding: 16px 32px 96px;
+  padding: 16px 32px 128px;
 
   @media (max-width: calc(600 / 16 * 1rem)) {
-    padding: 8px 16px 48px;
+    padding: 8px 16px 80px;
   }
 }

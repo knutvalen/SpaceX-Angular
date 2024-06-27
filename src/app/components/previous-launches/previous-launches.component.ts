@@ -23,6 +23,7 @@ type LaunchViewModel = {
 export class PreviousLaunchesComponent implements OnInit {
   viewModel = signal<LaunchViewModel[] | undefined>(undefined);
   isLoading = signal(false);
+  isLoadingMore = signal(false);
   private limit: number;
   private readonly initialLimit = 10;
   isAscendingOrder = false;
@@ -36,7 +37,7 @@ export class PreviousLaunchesComponent implements OnInit {
   }
 
   protected loadMore() {
-    this.isLoading.set(true);
+    this.isLoadingMore.set(true);
     this.limit = this.limit + this.initialLimit;
     this.loadLaunches();
   }
@@ -57,8 +58,12 @@ export class PreviousLaunchesComponent implements OnInit {
         this.isAscendingOrder && viewModel.reverse();
         this.viewModel.set(viewModel);
         this.isLoading.set(false);
+        this.isLoadingMore.set(false);
       })
-      .catch(() => this.isLoading.set(false));
+      .catch(() => {
+        this.isLoading.set(false);
+        this.isLoadingMore.set(false);
+      });
   }
 
   protected toggleOrder() {

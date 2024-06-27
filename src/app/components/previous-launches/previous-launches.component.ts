@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit, PLATFORM_ID, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { HistoricLaunchesService } from '../../services/historic-launches.service';
-import { isPlatformBrowser, NgForOf, NgIf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { LaunchService } from '../../services/launch.service';
 import { ButtonComponent } from '../button/button.component';
-import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
 import { IconsModule } from '../../icons/icons.module';
 import { Router } from '@angular/router';
+import { BasicLoaderComponent } from '../basic-loader/basic-loader.component';
 
 type LaunchViewModel = {
   name: string;
@@ -16,13 +16,7 @@ type LaunchViewModel = {
 @Component({
   selector: 'app-previous-launches',
   standalone: true,
-  imports: [
-    NgForOf,
-    ButtonComponent,
-    NgIf,
-    SlinkyRotatorComponent,
-    IconsModule,
-  ],
+  imports: [NgForOf, ButtonComponent, NgIf, IconsModule, BasicLoaderComponent],
   templateUrl: './previous-launches.component.html',
   styleUrl: './previous-launches.component.css',
 })

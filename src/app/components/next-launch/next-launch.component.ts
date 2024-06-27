@@ -1,12 +1,12 @@
-import { Component, Inject, PLATFORM_ID, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NextLaunchService } from '../../services/next-launch.service';
 import { IconsModule } from '../../icons/icons.module';
 import { LaunchService } from '../../services/launch.service';
-import { isPlatformBrowser, NgIf } from '@angular/common';
-import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
+import { NgIf } from '@angular/common';
 import { Webcast } from '../../models/Webcast';
 import { ButtonComponent } from '../button/button.component';
 import { Router } from '@angular/router';
+import { BasicLoaderComponent } from '../basic-loader/basic-loader.component';
 
 type NextLaunchViewModel = {
   id: string;
@@ -18,7 +18,7 @@ type NextLaunchViewModel = {
 @Component({
   selector: 'app-next-launch',
   standalone: true,
-  imports: [IconsModule, NgIf, SlinkyRotatorComponent, ButtonComponent],
+  imports: [IconsModule, NgIf, ButtonComponent, BasicLoaderComponent],
   templateUrl: './next-launch.component.html',
   styleUrl: './next-launch.component.css',
 })

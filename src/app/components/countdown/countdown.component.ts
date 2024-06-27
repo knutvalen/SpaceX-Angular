@@ -11,9 +11,9 @@ import {
   signal,
 } from '@angular/core';
 import { NextLaunchService } from '../../services/next-launch.service';
-import { isPlatformBrowser, NgIf } from '@angular/common';
-import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
 import { ButtonComponent } from '../button/button.component';
+import { BasicLoaderComponent } from '../basic-loader/basic-loader.component';
+import { isPlatformBrowser, NgIf } from '@angular/common';
 
 const formatCountdown = (timeInSeconds?: number): string | undefined => {
   console.log(timeInSeconds);
@@ -35,21 +35,24 @@ const formatCountdown = (timeInSeconds?: number): string | undefined => {
 @Component({
   selector: 'app-countdown',
   standalone: true,
-  imports: [NgIf, SlinkyRotatorComponent, ButtonComponent],
+  imports: [ButtonComponent, BasicLoaderComponent, NgIf],
   templateUrl: './countdown.component.html',
   styleUrl: './countdown.component.css',
 })
 export class CountdownComponent implements OnInit, OnDestroy {
   private timeLeft = signal<number | undefined>(undefined);
   private intervalId: any;
-
+  protected readonly isBrowser: boolean;
   formattedCountdown = computed(() => formatCountdown(this.timeLeft()));
   isLoading = signal(false);
 
   constructor(
     private nextLaunchService: NextLaunchService,
     private injector: Injector,
-  ) {}
+    @Inject(PLATFORM_ID) private platformId: any,
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   startInterval(): void {
     this.clearInterval();
@@ -73,7 +76,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
     }
   }
 
-  countdown(): void {
+  private countdown(): void {
     runInInjectionContext(this.injector, () => {
       effect(() => {
         const timeLeft = this.timeLeft();
@@ -94,7 +97,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
       .then((diffTimeInSeconds) => {
         this.timeLeft.set(diffTimeInSeconds);
         if (diffTimeInSeconds > 0) {
-          this.countdown();
+          this.isBrowser && this.countdown();
         }
         this.isLoading.set(false);
       })

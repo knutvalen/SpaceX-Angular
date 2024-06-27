@@ -6,10 +6,10 @@ import {
   LaunchServiceProvider,
   Mission,
 } from '../../models/LaunchDetails';
-import { isPlatformBrowser, NgForOf, NgIf } from '@angular/common';
-import { SlinkyRotatorComponent } from '../slinky-rotator/slinky-rotator.component';
+import { NgForOf, NgIf } from '@angular/common';
 import { IconsModule } from '../../icons/icons.module';
 import { Webcast } from '../../models/Webcast';
+import { BasicLoaderComponent } from '../basic-loader/basic-loader.component';
 
 type ViewModel = {
   name: string;
@@ -25,7 +25,7 @@ type ViewModel = {
 @Component({
   selector: 'app-launch-details',
   standalone: true,
-  imports: [NgIf, SlinkyRotatorComponent, NgForOf, IconsModule],
+  imports: [NgIf, NgForOf, IconsModule, BasicLoaderComponent],
   templateUrl: './launch-details.component.html',
   styleUrl: './launch-details.component.css',
 })

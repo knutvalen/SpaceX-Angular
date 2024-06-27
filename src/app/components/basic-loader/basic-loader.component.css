@@ -1,0 +1,29 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0turn);
+  }
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.basicLoader {
+  --size: 96px;
+
+  :before {
+    border-width: 2px;
+  }
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  border-style: solid;
+  border-color: var(--color-black);
+  animation: rotate 1s linear infinite;
+
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--color-white);
+  }
+
+  clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+}

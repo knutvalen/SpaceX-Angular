@@ -1,7 +1,7 @@
 <div class="card">
   <h2>Countdown to next launch</h2>
   <div *ngIf="isLoading()" class="centerFullScreen">
-    <app-slinky-rotator />
+    <app-basic-loader />
   </div>
   <div *ngIf="!isLoading()">
     <p *ngIf="formattedCountdown()">{{ formattedCountdown() }}</p>

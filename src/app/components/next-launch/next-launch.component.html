@@ -11,7 +11,7 @@
     </app-button>
   </div>
   <div *ngIf="isLoading()" class="centerFullScreen">
-    <app-slinky-rotator />
+    <app-basic-loader />
   </div>
   <div *ngIf="!isLoading() && viewModel()" class="list">
     <div *ngIf="viewModel()?.name" class="listItem">

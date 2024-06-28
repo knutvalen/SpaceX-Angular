@@ -18,7 +18,7 @@ npm run dev
 
 ## Continuous Integration & Continuous Deployment
 
-[Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://space-x-angular.vercel.app.
+[Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://spacex.knutvalen.dev.
 
 ## To-Do's
 

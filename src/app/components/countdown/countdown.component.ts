@@ -16,7 +16,6 @@ import { BasicLoaderComponent } from '../basic-loader/basic-loader.component';
 import { isPlatformBrowser, NgIf } from '@angular/common';
 
 const formatCountdown = (timeInSeconds?: number): string | undefined => {
-  console.log(timeInSeconds);
   if (timeInSeconds === undefined) {
     return undefined;
   }

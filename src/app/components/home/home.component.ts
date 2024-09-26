@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { CountdownComponent } from '../countdown/countdown.component';
 import { PreviousLaunchesComponent } from '../previous-launches/previous-launches.component';
 import { NextLaunchComponent } from '../next-launch/next-launch.component';

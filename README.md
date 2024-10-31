@@ -16,10 +16,12 @@ npm install
 npm run dev
 ```
 
+Format with [Prettier](https://prettier.io): `npm run format-fix`
+
 ## Continuous Integration & Continuous Deployment
 
 [Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://spacex.knutvalen.dev.
 
 ## To-Do's
 
-[Kanban](https://github.com/users/knutvalen/projects/1) board at Github.
+[To-Do](https://github.com/users/knutvalen/projects/1) board at Github.

@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@angular/core';
 import { NextLaunch } from '../models/NextLaunch';
-import { SpaceXApiInterface } from '../api/space-x-api.interface';
+import { ApiInterface } from '../api/api.interface';
 import { INJECTION_TOKEN } from '../api/injection-token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NextLaunchService {
-  constructor(@Inject(INJECTION_TOKEN) private api: SpaceXApiInterface) {}
+  constructor(@Inject(INJECTION_TOKEN) private api: ApiInterface) {}
 
   async getNextLaunch(): Promise<NextLaunch> {
     return await this.api.getNextLaunch();

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SpaceXApiInterface } from './space-x-api.interface';
+import { ApiInterface } from './api.interface';
 import { NextLaunch } from '../models/NextLaunch';
 import { LaunchDetails } from '../models/LaunchDetails';
 import { PreviousLaunch } from '../models/PreviousLaunch';
@@ -7,7 +7,7 @@ import { PreviousLaunch } from '../models/PreviousLaunch';
 @Injectable({
   providedIn: 'root',
 })
-export class FakeSpaceXApiService implements SpaceXApiInterface {
+export class FakeApiService implements ApiInterface {
   delay: number;
 
   constructor() {

@@ -8,11 +8,11 @@ import { Component } from '@angular/core';
   styleUrl: './privacy-policy.component.css',
 })
 export class PrivacyPolicyComponent {
-  readonly appName = 'SpaceX Developments';
+  readonly appName = 'StellarApex';
   readonly lastUpdated = new Date(2024, 9, 25).toLocaleDateString('en', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
-  readonly mailAddress = 'knut.valen@gmail.com';
+  readonly mailAddress = 'knut@knutvalen.dev';
 }

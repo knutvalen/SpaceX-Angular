@@ -1,4 +1,4 @@
-# SpaceX Angular
+# StellarApex Web
 
 Proposed solution for [The Frontend Developer Challenge](https://github.com/knutvalen/coding-challenge-frontend).
 
@@ -20,7 +20,7 @@ Format with [Prettier](https://prettier.io): `npm run format-fix`
 
 ## Continuous Integration & Continuous Deployment
 
-[Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://spacex.knutvalen.dev.
+[Vercel](https://vercel.com/knutvalens-projects/space-x-angular) will build and deploy to https://stellarapex.knutvalen.dev.
 
 ## To-Do's
 

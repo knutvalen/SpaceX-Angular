@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { SpaceXApiService } from './api/space-x-api.service';
+import { ApiService } from './api/api.service';
 import { INJECTION_TOKEN } from './api/injection-token';
 
 export const appConfig: ApplicationConfig = {
@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideAnimationsAsync(),
-    { provide: INJECTION_TOKEN, useClass: SpaceXApiService },
+    { provide: INJECTION_TOKEN, useClass: ApiService },
   ],
 };

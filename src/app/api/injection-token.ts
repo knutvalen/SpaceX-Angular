@@ -1,6 +1,4 @@
 import { InjectionToken } from '@angular/core';
-import { SpaceXApiInterface } from './space-x-api.interface';
+import { ApiInterface } from './api.interface';
 
-export const INJECTION_TOKEN = new InjectionToken<SpaceXApiInterface>(
-  'SpaceXApi',
-);
+export const INJECTION_TOKEN = new InjectionToken<ApiInterface>('API');

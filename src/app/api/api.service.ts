@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NextLaunch } from '../models/NextLaunch';
-import { SpaceXApiInterface } from './space-x-api.interface';
+import { ApiInterface } from './api.interface';
 import { PreviousLaunch } from '../models/PreviousLaunch';
 import { LaunchDetails } from '../models/LaunchDetails';
 
@@ -22,7 +22,7 @@ enum LaunchServiceProvider {
 @Injectable({
   providedIn: 'root',
 })
-export class SpaceXApiService implements SpaceXApiInterface {
+export class ApiService implements ApiInterface {
   constructor() {}
 
   async getNextLaunch(): Promise<NextLaunch> {
